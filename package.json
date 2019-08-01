@@ -29,7 +29,9 @@
     "watch": "npm run build -- --watch",
     "watch:test": "jest --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "hhapp-device-protocol": "github:damiankoper/hhapp-device-protocol#master"
+  },
   "devDependencies": {
     "@types/jest": "^23.3.3",
     "@types/node": "^10.11.4",

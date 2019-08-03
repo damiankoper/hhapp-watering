@@ -1,12 +1,21 @@
-import Device from 'hhapp-device-protocol/lib/Device/Device';
-let device = new Device({
-  type: 'watering',
-  servers: [
-    {
-      port: 2137,
-      host: 'localhost',
-    },
-  ],
-});
+import WateringCan from './WateringCan';
 
-device.init();
+const can = new WateringCan({
+  deviceConfig: {
+    servers: [
+      {
+        host: 'localhost',
+        port: 2137,
+      },
+    ],
+    type: 'watering',
+  },
+  onOffPattern: [1000, 500],
+  relayPin: 1,
+  statusInterval: 2000,
+});
+can.run();
+
+process.on('beforeExit', () => {
+  can.destroy();
+});

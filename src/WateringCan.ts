@@ -31,7 +31,7 @@ export default class WateringCan {
 
   public destroy() {
     this.device.destroy();
-    this.stopCycle()
+    this.stopCycle();
     if (this.relayControl) {
       this.relayControl.unexport();
     }
@@ -45,7 +45,7 @@ export default class WateringCan {
       this.startCycle();
     });
     this.device.onAction('wateringCycleOff', () => {
-      this.stopCycle()
+      this.stopCycle();
     });
   }
 
@@ -62,11 +62,11 @@ export default class WateringCan {
       this.device.sendStatus(this.statusGetter());
     }
   }
-  private stopCycle(){
+  private stopCycle() {
     if (this.cycleTimeout) {
       clearTimeout(this.cycleTimeout);
     }
-    this.relayOff()
+    this.relayOff();
     this.device.sendStatus(this.statusGetter());
   }
 
@@ -92,9 +92,9 @@ export default class WateringCan {
   private statusGetter() {
     return {
       isRelayOn: this.isRelayOn,
-      isWatering: !!this.cycleTimeout
-    }
-  };
+      isWatering: !!this.cycleTimeout,
+    };
+  }
 
   private relayOn() {
     if (this.relayControl) {

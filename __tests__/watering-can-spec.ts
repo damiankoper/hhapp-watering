@@ -95,28 +95,28 @@ describe('Watering can test', () => {
   });
 
   it('should send status periodically and control relay', done => {
-    jest.useRealTimers()
+    jest.useRealTimers();
     canConfig.onOffPattern = [30, 80];
     can = new WateringCan(canConfig);
     can.run();
-    let called = 0
-    let expectedStatus = true
+    let called = 0;
+    let expectedStatus = true;
     let fn = jest.fn(status => {
-      expect(status.payload.isWatering).toBeTruthy()
-      expect(status.payload.isRelayOn).toBe(expectedStatus)
+      expect(status.payload.isWatering).toBeTruthy();
+      expect(status.payload.isRelayOn).toBe(expectedStatus);
       expect(status.device.type).toBe('watering');
-      expectedStatus = !expectedStatus
-      called++
+      expectedStatus = !expectedStatus;
+      called++;
     });
 
     manager.onStatus({ type: 'watering' }, fn);
-    manager.onConnection((device) => {
+    manager.onConnection(device => {
       device.sendAction('wateringCycleOn', {});
       device.sendAction('wateringCycleOn', {});
       setTimeout(() => {
         expect(called).toBeGreaterThanOrEqual(1);
         done();
       }, 200);
-    })
+    });
   });
 });

@@ -28,7 +28,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'git@github.com:damiankoper/hhapp-watering.git',
       path : '/home/pi/watering/development',
-      'post-deploy' : 'npx pm2 stop all --silent || npm install && npm build && npx pm2 startOrReload ecosystem.config.js'
+      'post-deploy' : 'npx pm2 stop all --silent || node -v && npm install --verbose && npm run  build && npx pm2 startOrReload ecosystem.config.js'
     },
     production : {
       user : 'pi',
@@ -36,7 +36,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'git@github.com:damiankoper/hhapp-watering.git',
       path : '/home/pi/watering/production',
-      'post-deploy' : 'npx pm2 stop all --silent || npm install && npm build && npx pm2 startOrReload ecosystem.config.js --env production'
+      'post-deploy' : 'npx pm2 stop all --silent || node -v && npm install && npm run build && npx pm2 startOrReload ecosystem.config.js --env production'
     }
   }
 };

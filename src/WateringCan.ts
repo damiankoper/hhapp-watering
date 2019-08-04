@@ -100,14 +100,15 @@ export default class WateringCan {
 
   private relayOn() {
     if (this.relayControl) {
-      this.relayControl.writeSync(1);
+      // Relay is 0-activated
+      this.relayControl.writeSync(0);
     }
     this.isRelayOn = true;
   }
 
   private relayOff() {
     if (this.relayControl) {
-      this.relayControl.writeSync(0);
+      this.relayControl.writeSync(1);
     }
     this.isRelayOn = false;
   }

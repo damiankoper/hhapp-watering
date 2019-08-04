@@ -9,7 +9,7 @@ module.exports = {
     max_memory_restart: '1G',
     env: {
       NODE_ENV: 'development',
-      MANAGER_URL:'192.168.0.2',
+      MANAGER_URL:'192.168.43.255',
       MANAGER_PORT: 3001,
       RELAY_PIN: 17,
     },
@@ -28,7 +28,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'git@github.com:damiankoper/hhapp-watering.git',
       path : '/home/pi/watering/development',
-      'post-deploy' : 'node -v && npm install --verbose && npx pm2 stop all --silent || npm run  build && npx pm2 startOrReload ecosystem.config.js'
+      'post-deploy' : 'node -v && npm install --verbose && npx pm2 stop all --silent || npm run build && npx pm2 startOrReload ecosystem.config.js'
     },
     production : {
       user : 'pi',

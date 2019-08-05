@@ -9,7 +9,7 @@ module.exports = {
     max_memory_restart: '1G',
     env: {
       NODE_ENV: 'development',
-      MANAGER_URL:'192.168.43.255',
+      MANAGER_URL:'192.168.43.216',
       MANAGER_PORT: 3001,
       RELAY_PIN: 17,
     },

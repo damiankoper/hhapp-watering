@@ -65,6 +65,7 @@ export default class WateringCan {
   private stopCycle() {
     if (this.cycleTimeout) {
       clearTimeout(this.cycleTimeout);
+      this.cycleTimeout = undefined
     }
     this.relayOff();
     this.device.sendStatus(this.statusGetter());
@@ -73,8 +74,7 @@ export default class WateringCan {
   private cycleLoop() {
     this.cycleTimeout = setTimeout(() => {
       if (
-        this.patternIndex >
-        Math.floor(this.onOffPattern.length - 1 / 2) * 2
+        this.patternIndex > this.onOffPattern.length - 1
       ) {
         this.patternIndex = 0;
       }
@@ -92,7 +92,7 @@ export default class WateringCan {
   private statusGetter() {
     return {
       isRelayOn: this.isRelayOn,
-      isWatering: !!this.cycleTimeout,
+      isWatering: this.cycleTimeout !== undefined,
     };
   }
 

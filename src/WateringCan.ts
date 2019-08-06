@@ -84,6 +84,7 @@ export default class WateringCan {
       } else {
         this.relayOn();
       }
+      
       this.device.sendStatus(this.statusGetter());
       this.cycleLoop();
     }, this.onOffPattern[this.patternIndex++]);

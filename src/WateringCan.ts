@@ -39,7 +39,7 @@ export default class WateringCan {
 
   private initDevice() {
     this.device.init();
-    this.device.setStatusGetter(this.statusGetter);
+    this.device.setStatusGetter(this.statusGetter.bind(this));
     this.device.autoStatusOn(this.statusInterval);
     this.device.onAction('wateringCycleOn', () => {
       this.startCycle();
@@ -89,7 +89,7 @@ export default class WateringCan {
     }, this.onOffPattern[this.patternIndex++]);
   }
 
-  private statusGetter() {
+  private statusGetter() {    
     return {
       isRelayOn: this.isRelayOn,
       isWatering: this.cycleTimeout !== undefined,

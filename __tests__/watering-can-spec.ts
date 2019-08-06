@@ -94,7 +94,24 @@ describe('Watering can test', () => {
     }, 140);
   });
 
-  it('should send status periodically and control relay', done => {
+  it('should send status periodically while running', done => {
+    canConfig.statusInterval = 30;
+    can = new WateringCan(canConfig);
+    can.run();
+    let fn = jest.fn(status => {
+      expect(status.device.type).toBe('watering');
+    });
+    manager.onStatus({ type: 'watering' }, fn);
+    manager.onConnection(() => {
+      manager.sendAction({ action: 'wateringCycleOn', type: 'watering' }, {})
+    })
+    setTimeout(() => {
+      expect(fn).toHaveBeenCalledTimes(5);
+      done();
+    }, 140);
+  });
+
+  it('should send status and control relay', done => {
     jest.useRealTimers();
     canConfig.onOffPattern = [30, 80];
     can = new WateringCan(canConfig);

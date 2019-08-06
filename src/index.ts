@@ -10,7 +10,7 @@ const can = new WateringCan({
     ],
     type: 'watering',
   },
-  onOffPattern: [1000, 500],
+  onOffPattern: [1000, 500, 100, 800, 100],
   relayPin: parseInt(process.env.RELAY_PIN as string, 10),
   statusInterval: 2000,
 });

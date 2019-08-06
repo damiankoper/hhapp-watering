@@ -22,8 +22,6 @@ export default class WateringCan {
     this.onOffPattern = config.onOffPattern;
     this.statusInterval = config.statusInterval;
     this.relayPin = config.relayPin;
-
-    console.log(config);
   }
 
   public run() {

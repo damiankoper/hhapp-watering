@@ -4,7 +4,7 @@ const can = new WateringCan({
   deviceConfig: {
     servers: [
       {
-        host: process.env.MANAGER_HOST as string,
+        host: process.env.MANAGER_URL as string,
         port: parseInt(process.env.MANAGER_PORT as string, 10),
       },
     ],
